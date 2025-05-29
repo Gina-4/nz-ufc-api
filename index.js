@@ -9,39 +9,39 @@ const uri = "mongodb+srv://georginariri4:1ziQIMmCKy3t4HkL@cluster0.u1qlb9u.mongo
 mongoose.connect(uri);
 
 // Define Student schema
-const studentSchema = new mongoose.Schema({
-  name: (String),
-  nickname: (String),
-  weightClass: (String),
-  wins: (Number),
-  losses: (Number),
-  isActive: (Boolean, true),
-  hometown: (String),
-  fightingStyles: (Array)
+const fighterSchema = new mongoose.Schema({
+  name: String,
+  nickname: String,
+  weightClass: String,
+  wins: Number,
+  losses: Number,
+  isActive: Boolean,
+  hometown: String,
+  fightingStyles: Array
   }
 );
 
-const Student = mongoose.model('Student', studentSchema);
+const Fighter = mongoose.model('Fighter', fighterSchema);
 
 // API Endpoints
 app.get('/fighters', async (req, res) => {
-  const students = await Student.find();
-  res.json(students);
+  const fighters = await Fighter.find();
+  res.json(fighters);
 });
 
 app.post('/fighters', async (req, res) => {
-  const student = new Student(req.body);
-  await student.save();
-  res.json(student);
+  const fighters = new Fighter (req.body);
+  await fighters.save();
+  res.json(fighters);
 });
 
 app.get('/fighters/:id', async (req, res) => {
-  const student = await Student.findById(req.params.id);
-  res.json(student);
+  const fighters = await Fighter.findById(req.params.id);
+  res.json(fighters);
 });
-app.get('/fighters/weightclass/:weightClass', async (req, res) => {
-  const student = await Student.findById(req.params.weightClass);
-  res.json(student);
+app.get('/fighters/weight/:weightClass', async (req, res) => {
+  const fighters = await Fighter.find({weightClass:req.params.weightClass});
+  res.json(fighters);
 });
 
 app.listen(3000, () => {

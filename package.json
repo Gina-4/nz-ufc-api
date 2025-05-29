@@ -1,5 +1,5 @@
 {
-  "name": "mongodb-express-app",
+  "name": "nz-ufc-api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
