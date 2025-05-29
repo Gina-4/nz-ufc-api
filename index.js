@@ -39,8 +39,8 @@ app.get('/fighters/:id', async (req, res) => {
   const fighters = await Fighter.findById(req.params.id);
   res.json(fighters);
 });
-app.get('/fighters/weight/:weightClass', async (req, res) => {
-  const fighters = await Fighter.find({weightClass:req.params.weightClass});
+app.get('/fighters/active', async (req, res) => {
+  const fighters = await Fighter.find({ isActive: true});
   res.json(fighters);
 });
 
